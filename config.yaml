@@ -1,0 +1,15 @@
+seed: 42  # Reproducibility seed
+default_window_size: 6
+custom_window_size:
+  '29187': 5
+  '28434': 5
+exclude_deployments:
+  - '26982'
+  - '15812'
+  - '25712'
+
+paths:
+  base_directory: 'excel_AIS\\raw_excel_AIS'
+  csv_location: 'excel_AIS\\processed_excel_AIS'
+  search_directory: 'hybrid_millidecade_bands'
+
