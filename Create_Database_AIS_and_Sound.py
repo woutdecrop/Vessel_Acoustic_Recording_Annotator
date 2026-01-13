@@ -48,7 +48,7 @@ comment = config.get("comment", "subset_cmmi")
 # Base paths from config
 base_directory = config["paths"]["base_directory"]
 csv_location = config["paths"]["csv_location"]
-
+raw_data_folder=config["paths"]["raw_data_folder"]
 
 plot_location_two = rf'plots_per_station_{window}_{comment}'
 data_per_station = rf'data\data_per_station_{window}_{comment}'
@@ -139,7 +139,7 @@ def process_csv_file(filename, deployment_directory, deployment_id, window_size,
             next_day += timedelta(days=1)
             continue
 
-        df_samples, data = process_data_samples(df_smoothed_filtered, station, deployment_id, data_per_station, loc)
+        df_samples, data = process_data_samples(df_smoothed_filtered, station, deployment_id, data_per_station, loc,raw_data_folder)
         if data.empty:
             pbar_files.set_postfix({'comment': f"skipping {day_start} due wrong day"})
             day_start += 1

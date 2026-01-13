@@ -128,10 +128,10 @@ def select_closest_wav_file(wav_files, target_date):
     return selected_wav_file
 
 
-def find_closest_wav_file(target_date,station):
+def find_closest_wav_file(target_date,station,root_folder_path = r'PhD_Clea' ):
     # target_date=df_smoothed_filtered["event_time"].iloc[100]
     # target_date = target_date.tz_convert(None).to_pydatetime()
-    root_folder_path = r'PhD_Clea'
+    root_folder_path = root_folder_path
     stations = filter_folders(root_folder_path, target_date,station)
 
     if not stations:
@@ -170,8 +170,8 @@ def find_closest_wav_file(target_date,station):
 
 
 
-def create_data(target_date, station, deployment_id, data_per_station, data,looper,distance,vessels_information,loc):
-    closest_wav_file, start_delta = find_closest_wav_file(target_date, station)
+def create_data(target_date, station, deployment_id, data_per_station, data,looper,distance,vessels_information,loc,root_folder_path = r'PhD_Clea'):
+    closest_wav_file, start_delta = find_closest_wav_file(target_date, station,root_folder_path )
 
     if closest_wav_file == "day":
         # print("day", target_date)

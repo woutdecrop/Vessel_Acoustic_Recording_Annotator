@@ -12,4 +12,5 @@ paths:
   base_directory: 'excel_AIS\\raw_excel_AIS'
   csv_location: 'excel_AIS\\processed_excel_AIS'
   search_directory: 'hybrid_millidecade_bands'
+  raw_data_folder: 'PhD_Clea'
 

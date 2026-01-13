@@ -31,7 +31,7 @@ def filter_smoothed_data(df_smoothed, min_day, next_day):
 
 
 
-def process_data_samples(df_smoothed_filtered, station, deployment_id, data_per_station, loc):
+def process_data_samples(df_smoothed_filtered, station, deployment_id, data_per_station, loc,root_folder_path = r'PhD_Clea'):
     df_samples = pd.DataFrame()
     data = pd.DataFrame(columns=['closest_wav_file', 'output_prefix', 'output_postfix', 'start_delta',
                                  'vessels_information'])
@@ -43,7 +43,7 @@ def process_data_samples(df_smoothed_filtered, station, deployment_id, data_per_
         df_samples = pd.concat([df_samples, row.to_frame().T], ignore_index=True)
         vessels_information = row["vessel_information"].replace(' ', '-')
         extra, data, next = create_data(target_date, station, deployment_id, data_per_station,
-                                        data, 0, distance, vessels_information, loc)
+                                        data, 0, distance, vessels_information, loc,root_folder_path)
         if next == "break":
             break
         elif next == "continue":

@@ -1,7 +1,7 @@
 # AIS Annotator & WAV Processing Pipeline
 
 ## Overview
-This project contains scripts to process AIS (Automatic Identification System) data, extract vessel information, generate audio snippets from hydrophone recordings, and create spectrogram and distance-vs-time plots for vessel monitoring.
+This project contains scripts to process AIS (Automatic Identification System) data, extract vessel information, generate audio snippets from hydrophone recordings. (and create spectrogram and distance-vs-time plots for vessel monitoring if HMD also present).
 
 Main functionalities:
 1. AIS Data Processing: Load, filter, and calculate vessel distances from hydrophones.
@@ -15,7 +15,6 @@ Main functionalities:
 AIS_annotator/
 ├── create_figures_or_wavs/
 │   ├── Create_Excel_Database.py
-│   ├── Create_Database_AIS_and_Sound.py
 │   ├── Create_Database_AIS_2_SHIPS_and_Sound.py
 │   ├── Merge_excel_files.py
 ├── utils/
@@ -29,6 +28,7 @@ AIS_annotator/
 excel_AIS/
 ├── raw_excel_AIS/
 ├── cmmi_data_all/
+Create_Database_AIS_and_Sound.py
 hybrid_millidecade_bands/
 data/
 ├── data_per_station_...
@@ -72,12 +72,13 @@ database.csv
 ## Usage
 1. Place raw AIS Excel files in `excel_AIS/raw_excel_AIS/`.
 2. Place processed AIS CSV files (if already created) in `excel_AIS/cmmi_data_all/`.
-3. Place hydrophone millidecade bands in `hybrid_millidecade_bands/`.
-4. Run the desired script:
+3. Place hydrophone millidecade bands (if exist) in `hybrid_millidecade_bands/`.
+4. Place raw data in raw_data_folder `PhD_Clea`
+5. Run the desired script:
    - Single ship database: `python Create_Database_AIS_and_Sound.py`
    - Two ship database: `python Create_Database_AIS_2_SHIPS_and_Sound.py`
-   - Generate plots: handled automatically in the above scripts.
-5. Output:
+   - Generate plots: handled automatically in the above scripts. 
+6. Output:
    - WAV snippets saved in `data/data_per_station_*`.
    - Plots saved in `plots_per_station_*`.
    - Databases saved in `database.csv` (single ship) or `UC6/database.csv` (two ships).
@@ -100,6 +101,8 @@ paths:
   base_directory: 'excel_AIS\\raw_excel_AIS'
   csv_location: 'excel_AIS\\processed_excel_AIS'
   search_directory: 'hybrid_millidecade_bands'
+  raw_data_folder: 'PhD_Clea'
+
 ```
 
 ## Dependencies
