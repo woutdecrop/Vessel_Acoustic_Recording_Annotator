@@ -247,7 +247,16 @@ def trim_wav(input_file, output_prefix,output_postfix,start_delta,station,deploy
     overlap_duration = 2   # Overlap duration in seconds
 
     # Read the WAV file
-    audio = AudioSegment.from_wav(input_file)
+    # audio = AudioSegment.from_wav(input_file)
+
+    ext = os.path.splitext(input_file)[1].lower()
+
+    if ext == ".wav":
+        audio = AudioSegment.from_wav(input_file)
+    elif ext == ".flac":
+        audio = AudioSegment.from_file(input_file, format="flac")
+    else:
+        raise ValueError(f"Unsupported audio format: {ext}")
 
     date_str, time_str = str(input_file).split("\\")[-1].split('_')[1:]
     datetime_str = date_str + '_' + time_str.split('.')[0]
