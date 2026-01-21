@@ -31,7 +31,7 @@ def filter_smoothed_data(df_smoothed, min_day, next_day):
 
 
 
-def process_data_samples(df_smoothed_filtered, station, deployment_id, data_per_station, loc,root_folder_path = r'PhD_Clea'):
+def process_data_samples(df_smoothed_filtered, station, deployment_id, data_per_station, loc,root_folder_path = r'data'):
     df_samples = pd.DataFrame()
     data = pd.DataFrame(columns=['closest_wav_file', 'output_prefix', 'output_postfix', 'start_delta',
                                  'vessels_information'])
@@ -53,27 +53,3 @@ def process_data_samples(df_smoothed_filtered, station, deployment_id, data_per_
     return df_samples, data
 
 
-def process_data_samples_two(df_smoothed_filtered, station, deployment_id, data_per_station, loc):
-    df_samples = pd.DataFrame()
-    data = pd.DataFrame(columns=['closest_wav_file', 'output_prefix', 'output_postfix', 'start_delta',
-                                 'vessels_information'])
-    selected_data = df_smoothed_filtered
-
-    for index, row in selected_data.iterrows():
-        target_date = row['event_time'].tz_convert(None).to_pydatetime()
-        distance_1 = str(round(row['distance_1'] * 1000))
-        distance_2 = str(round(row['distance_2'] * 1000))
-        distance=distance_1 + '-' + distance_2
-        df_samples = pd.concat([df_samples, row.to_frame().T], ignore_index=True)
-        vessels_information_1 = row["vessel_information_1"].replace(' ', '-')
-        vessels_information_2 = row["vessel_information_2"].replace(' ', '-')
-        vessels_information=vessels_information_1 + '_' + vessels_information_2
-        extra, data, next = create_data(target_date, station, deployment_id, data_per_station,
-                                        data, 0, distance, vessels_information, loc)
-        if next == "break":
-            break
-        elif next == "continue":
-            continue
-
-    df_samples.reset_index(drop=True, inplace=True)
-    return df_samples, data

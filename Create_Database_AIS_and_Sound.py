@@ -11,7 +11,7 @@ from utils.audio_vessel_annotator import process_deployment_data, filter_date
 from utils.distance_calculator import process_data
 from utils.find_closest_wav import create_closest_ships
 
-from utils.plot_spectrogram_distance import database_creater
+from utils.data_base_creater import database_creater
 from utils.data_processing_utils import (
     calculate_date_range,
     filter_dataframe_by_date,
@@ -43,15 +43,13 @@ def load_config(config_path):
 
 
 config = load_config(config_path )
-window = config.get("window", 6)
-comment = config.get("comment", "subset_cmmi")
+comment = config.get("comment", "v0")
 # Base paths from config
 base_directory = config["paths"]["base_directory"]
 csv_location = config["paths"]["csv_location"]
 raw_data_folder=config["paths"]["raw_data_folder"]
 
-plot_location_two = rf'plots_per_station_{window}_{comment}'
-data_per_station = rf'data\data_per_station_{window}_{comment}'
+data_per_station = rf'data\data_per_station_{comment}'
 csv_file_database = rf'database.csv'
 
 # Set seed for reproducibility
@@ -150,7 +148,7 @@ def process_csv_file(filename, deployment_directory, deployment_id, window_size,
         # print(min_day,desired_filename)
 
 
-        database_creater(station, data, deployment_id,  df_samples,csv_file_database )
+        database_creater(station, data, deployment_id,  df_samples,csv_file_database)
 
         day_start += 1
         min_day += timedelta(days=1)

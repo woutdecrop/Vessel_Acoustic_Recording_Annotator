@@ -1,39 +1,36 @@
-# AIS Annotator & WAV Processing Pipeline
+# Vessel_Acoustic_Recording_Annotator
 
 ## Overview
-This project contains scripts to process AIS (Automatic Identification System) data, extract vessel information, generate audio snippets from hydrophone recordings. (and create spectrogram and distance-vs-time plots for vessel monitoring if HMD also present).
+This project contains scripts to process AIS (Automatic Identification System) data, extract vessel information, generate audio snippets from hydrophone recordings. .
 
 Main functionalities:
 1. AIS Data Processing: Load, filter, and calculate vessel distances from hydrophones.
 2. Closest Ship Detection: Identify the closest vessels at each timestamp.
 3. Audio Extraction: Trim hydrophone recordings into 10-second snippets for analysis.
-4. Plot Generation: Produce spectrograms and distance-vs-time plots for vessel activity visualization.
-5. Database Creation: Generate CSV files summarizing vessel information and distances.
+4. Database Creation: Generate CSV files summarizing vessel information and distances.
+
+Side functionalities:
+- Covert FLAC files to WAV files
 
 ## Folder Structure
 ```
 AIS_annotator/
-├── create_figures_or_wavs/
-│   ├── Create_Excel_Database.py
-│   ├── Create_Database_AIS_2_SHIPS_and_Sound.py
-│   ├── Merge_excel_files.py
+│   ├── from_FLAC_to_WAV.py
 ├── utils/
 │   ├── __init__.py
 │   ├── import_data.py
 │   ├── audio_vessel_annotator.py
 │   ├── distance_calculator.py
 │   ├── find_closest_wav.py
-│   ├── plot_spectrogram_distance.py
+│   ├── data_base_creater.py
 │   ├── data_processing_utils.py
 excel_AIS/
 ├── raw_excel_AIS/
-├── cmmi_data_all/
+├── processed_excel_AIS/
 Create_Database_AIS_and_Sound.py
-hybrid_millidecade_bands/
+from_FLAC_to_WAV.py
 data/
 ├── data_per_station_...
-plots_per_station_...
-database.csv
 ```
 
 ## Installation
@@ -66,22 +63,15 @@ database.csv
   - `save_plot()`: Save plots with consistent size and formatting.
   - `plot_analysis()`: High-level function to generate plots for each day of deployment.
 
-### 4. Data Merging
-- `Merge_excel_files.py`: Combine multiple AIS CSV files per deployment and analyze unique vessel types.
-
 ## Usage
 1. Place raw AIS Excel files in `excel_AIS/raw_excel_AIS/`.
-2. Place processed AIS CSV files (if already created) in `excel_AIS/cmmi_data_all/`.
-3. Place hydrophone millidecade bands (if exist) in `hybrid_millidecade_bands/`.
-4. Place raw data in raw_data_folder `PhD_Clea`
-5. Run the desired script:
+2. Place processed AIS CSV files (if already created) in `excel_AIS/processed_excel_AIS/`.
+3. Place raw data in raw_data_folder `data`
+4. Run the desired script:
    - Single ship database: `python Create_Database_AIS_and_Sound.py`
-   - Two ship database: `python Create_Database_AIS_2_SHIPS_and_Sound.py`
-   - Generate plots: handled automatically in the above scripts. 
-6. Output:
+5. Output:
    - WAV snippets saved in `data/data_per_station_*`.
-   - Plots saved in `plots_per_station_*`.
-   - Databases saved in `database.csv` (single ship) or `UC6/database.csv` (two ships).
+   - Databases saved in `database.csv` 
 
 ## Configuration
 - Default window size and comment are extracted from `config.yaml`.
@@ -100,8 +90,7 @@ exclude_deployments:
 paths:
   base_directory: 'excel_AIS\\raw_excel_AIS'
   csv_location: 'excel_AIS\\processed_excel_AIS'
-  search_directory: 'hybrid_millidecade_bands'
-  raw_data_folder: 'PhD_Clea'
+  raw_data_folder: 'data'
 
 ```
 

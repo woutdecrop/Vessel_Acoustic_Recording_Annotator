@@ -21,4 +21,4 @@ def convert_all_flac_to_wav(root_path: str):
             print(f"Failed to convert {flac_file}: {e}")
 
 # Example usage
-convert_all_flac_to_wav(r"D:\USERS\wout.decrop\environments\UC5\AIS_annotator\create_figures_or_wavs")
+convert_all_flac_to_wav(r"/data")

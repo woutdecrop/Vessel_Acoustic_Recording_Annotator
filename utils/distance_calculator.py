@@ -40,8 +40,8 @@ def process_data(filename, start_lat, start_lon, csv_location, station, deployme
         df["event_time"] = pd.to_datetime(df["event_time"])
         # print("already exists")
         valid_types = {'Tanker', 'Towing', 'Diving', 'Sailing', 'Passenger', 'Fishing', 'Tug', 'Other', 'Large Towing',
-                       'Dredging', 'S&R', 'Military', 'Pleasure Craft', 'High Speed Craft', 'Cargo',
-                       'Pilot', 'Reserved', 'Law Enforcement', 'Anti-pollution equipment'}
+                       'Dredging', 'S&R', 'Pleasure Craft', 'High Speed Craft', 'Cargo',
+                       'Pilot', 'Reserved', 'Anti-pollution equipment'}
 
         # Function to replace invalid types
         df['type'] = df['type'].apply(lambda x: x if x in valid_types else 'Other')
