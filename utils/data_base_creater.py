@@ -5,10 +5,8 @@ from datetime import timedelta
 import xarray as xr
 from pydub import AudioSegment
 import datetime
-import matplotlib.pyplot as plt
 import os
 
-plt.rcParams['text.usetex'] = False
 warnings.filterwarnings("ignore", category=RuntimeWarning, module='pydub')
 warnings.filterwarnings("ignore", category=NumbaDeprecationWarning, module='pypam')
 
