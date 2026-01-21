@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="AIS_annotator_project",
-    version="0.1.0",
+    version="0.2.0",
     description="AIS annotator and audio processing utilities",
     packages=find_packages(),  # Automatically find all packages in the directory
     install_requires=[
@@ -10,8 +10,6 @@ setup(
         "tqdm",
         "numba",
         "pydub",
-        "lifewatch-pypam",
-        "matplotlib",
         "xarray",
         "numpy",
     ],
