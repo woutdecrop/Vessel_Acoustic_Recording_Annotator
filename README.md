@@ -21,7 +21,7 @@ AIS_annotator/
 │   ├── import_data.py
 │   ├── audio_vessel_annotator.py
 │   ├── distance_calculator.py
-│   ├── find_closest_wav.py
+│   ├── find_closest.py
 │   ├── data_base_creater.py
 │   ├── data_processing_utils.py
 excel_AIS/

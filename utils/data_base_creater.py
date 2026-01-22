@@ -65,9 +65,6 @@ def find_and_open_xr_dataset(search_directory, desired_filename, station):
 
 def trim_wav(input_file, output_prefix,output_postfix,start_delta,station,deployment_id,vessels_information):
     snippet_duration = 10 #9.614  # Length of each snippet in seconds
-    # audio[:9614]
-    overlap_duration = 2   # Overlap duration in seconds
-
     # Read the WAV file
     # audio = AudioSegment.from_wav(input_file)
 
@@ -101,15 +98,9 @@ def trim_wav(input_file, output_prefix,output_postfix,start_delta,station,deploy
     duration_seconds = len(trimmed_audio) / 1000
     start_delta=str(start_delta).replace('.', '-')
     vessels_information=vessels_information.replace(".", "-")
-    station_letter=station[0]
-
 
     output_file = f"{output_prefix}/{deployment_id}_{datetime_str}_{start_delta}_{vessels_information}_{output_postfix}.wav"
     trimmed_audio.export(output_file, format="wav")
-
-    # Move the start_time forward with overlap_duration to create an overlap
-    start_time += snippet_duration - overlap_duration
-
 
     return output_file
 
@@ -136,7 +127,7 @@ def database_creater(
             vessel_type=row["vessel_information"].split("_")[0]
             activity=row["vessel_information"].split("_")[1]
             SOG = row["vessel_information"].split("_")[2]
-            mmsi=df_samples["mmsi"].iloc[index]
+            ship_number=df_samples["ship_number"].iloc[index]
             longitude = df_samples["longitude"].iloc[index]
             latitude = df_samples["latitude"].iloc[index]
             distance= df_samples["distance"].iloc[index]
@@ -145,4 +136,4 @@ def database_creater(
             # Append data to CSV
             with open(csv_file_database, mode="a", newline="") as f:
                 writer = csv.writer(f)
-                writer.writerow([file_location, vessel_type, activity, SOG, mmsi, longitude, latitude, distance, event_time,station])
+                writer.writerow([file_location, vessel_type, activity, SOG, ship_number, longitude, latitude, distance, event_time,station])

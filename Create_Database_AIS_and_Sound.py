@@ -9,7 +9,7 @@ from tqdm import tqdm
 
 from utils.audio_vessel_annotator import process_deployment_data, filter_date
 from utils.distance_calculator import process_data
-from utils.find_closest_wav import create_closest_ships
+from utils.find_closest import create_closest_ships
 
 from utils.data_base_creater import database_creater
 from utils.data_processing_utils import (

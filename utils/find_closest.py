@@ -34,7 +34,7 @@ def create_closest_ships_two(df_smoothed, window):
     pivoted = grouped.pivot_table(
         index=pd.Grouper(key='event_time', freq=window_size),
         columns='rank',
-        values=['mmsi', 'distance', 'vessel_information'],
+        values=['ship_number', 'distance', 'vessel_information'],
         aggfunc='first'
     )
 

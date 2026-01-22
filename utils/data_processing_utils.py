@@ -3,7 +3,7 @@
 import pandas as pd
 from datetime import timedelta
 from utils.import_data import desired_pairs_test, desired_pairs_val, dict_id_to_valid_time
-from utils.find_closest_wav import create_data
+from utils.find_closest import create_data
 def calculate_date_range(df, deployment_id):
     min_day = df["event_time"].min().replace(hour=0, minute=0, second=0, microsecond=0)
     max_day = df["event_time"].max() + timedelta(days=1)
