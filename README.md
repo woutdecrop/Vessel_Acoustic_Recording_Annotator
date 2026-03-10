@@ -10,7 +10,16 @@ Main functionalities:
 4. Database Creation: Generate CSV files summarizing vessel information and distances.
 
 Side functionalities:
-- Covert FLAC files to WAV files
+- Convert FLAC files to WAV files
+
+## Downstream Project
+
+After creating the annotated audio snippets, they can be used directly with the following CLAP-based model for vessel distance categorization:
+
+🔗 **Audio Vessel Distance Categorizer (CLAP)**  
+https://github.com/woutdecrop/audio_vessel_distance_categorizer
+
+This model uses the extracted audio snippets to categorize vessel distance classes based on underwater acoustic signatures.
 
 ## Folder Structure
 ```
